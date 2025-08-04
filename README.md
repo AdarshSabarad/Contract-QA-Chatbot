@@ -1,5 +1,3 @@
-# Contract-QA-Chatbot
-Upload any contract PDF and ask natural language questions. Uses GPT-4, OCR (Tesseract), FAISS, and LangChain for real-time contract analysis and source citation.
 # 📄 Contract Q&A Chatbot
 
 An AI-powered chatbot that lets users upload any contract or scanned PDF and ask natural language questions like:
