@@ -28,7 +28,7 @@ def chunk_text(text, chunk_size=500, chunk_overlap=50):
     return splitter.split_text(text)
 
 def process_pdf_to_chunks(pdf_path):
-    images = convert_from_path(pdf_path)
+    convert_from_path(pdf_path, poppler_path="/usr/bin")
     st.info(f"Found {len(images)} pages.")
 
     docs = []
