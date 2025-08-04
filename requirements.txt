@@ -1,0 +1,8 @@
+streamlit
+pytesseract
+pdf2image
+langchain
+langchain-openai
+faiss-cpu
+poppler-utils
+tiktoken
