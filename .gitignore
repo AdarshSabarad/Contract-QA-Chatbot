@@ -1,0 +1,18 @@
+# Bytecode and system files
+__pycache__/
+*.pyc
+*.pyo
+*.DS_Store
+
+# PDFs or large files
+*.pdf
+
+# API keys, secrets, local config
+.env
+
+# Vector store files (saved locally by FAISS)
+contract_vectorstore/
+
+# Other junk or cache files
+*.db
+*.log
