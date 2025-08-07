@@ -8,6 +8,7 @@ from pdf2image import convert_from_path
 import pytesseract
 import os
 import tempfile
+import fitz  # PyMuPDF
 
 # --- Streamlit UI ---
 st.set_page_config(page_title="📄 Contract Q&A Chatbot")
@@ -33,15 +34,17 @@ def chunk_text(text, chunk_size=500, chunk_overlap=50):
     )
     return splitter.split_text(text)
 
+
 def process_pdf_to_chunks(pdf_path):
-    images = convert_from_path(pdf_path)
+    doc = fitz.open(pdf_path)
     docs = []
-    for i, image in enumerate(images[:6]):  # Limit for quick testing
-        page_text = pytesseract.image_to_string(image)
+    for i, page in enumerate(doc):
+        page_text = page.get_text()
         chunks = chunk_text(page_text)
         for chunk in chunks:
             docs.append(Document(page_content=chunk, metadata={"page": i + 1}))
     return docs
+
 
 def setup_qa_chain(docs):
     embedding = OpenAIEmbeddings(openai_api_key=openai_api_key)
