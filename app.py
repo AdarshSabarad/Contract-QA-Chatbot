@@ -36,10 +36,10 @@ def chunk_text(text, chunk_size=500, chunk_overlap=50):
 
 
 def process_pdf_to_chunks(pdf_path):
-    doc = fitz.open(pdf_path)
+    images = convert_from_path(pdf_path)
     docs = []
-    for i, page in enumerate(doc):
-        page_text = page.get_text()
+    for i, image in enumerate(images[:6]):  # Limit for quick testing
+        page_text = pytesseract.image_to_string(image)
         chunks = chunk_text(page_text)
         for chunk in chunks:
             docs.append(Document(page_content=chunk, metadata={"page": i + 1}))
